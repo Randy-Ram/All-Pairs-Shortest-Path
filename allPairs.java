@@ -65,17 +65,10 @@ public class allPairs
                      
                         int cost1 = arr[i][j];
                         int cost2 = arr[i][k] + arr[k][j];
-                        if (cost1 < cost2)
-                        {
-                            arr[i][j] = cost1;
-                        }
-                        else
+                        if (cost1 > cost2)
                         {
                             arr[i][j] = cost2;
-                            if(cost2 < 9999)
-                            {
-                                pi[i][j] = k;
-                            }
+                            pi[i][j] = pi[k][j];
                         }     
                     }
                     
@@ -84,6 +77,18 @@ public class allPairs
             System.out.println("k = " + k);
             printArray(pi);
             System.out.println("");
+        }
+        printPath(3, 5, pi);
+    }
+    
+    private static void printPath(int node1, int node2, int pi[][])
+    {
+        System.out.println("Path from " + node1 + " to " + node2);
+        System.out.print(node2 + " ");
+        while(node1 != node2)
+        {
+            System.out.print(pi[node1][node2] + " ");
+            node2 = pi[node1][node2];
         }
     }
 }
